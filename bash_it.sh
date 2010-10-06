@@ -4,6 +4,30 @@
 # Reload Library
 alias reload='source ~/.bash_profile'
 
+PREVIEW="less"
+[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
+[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
+
+case $OSTYPE in
+  linux*)
+    open_app ()
+    {
+      nohup $1 >/dev/null 2>/dev/null &
+    }
+    ;;
+  darwin*)
+    open_app ()
+    {
+      open -a $1
+    }
+    ;;
+  *)
+    open_app ()
+    {
+      $1
+    }
+esac
+
 # Load all files
 
 # Themes
@@ -50,10 +74,6 @@ do
 done
 
 export PS1=$PROMPT
-
-PREVIEW="less"
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
 
 #
 # Custom Help
