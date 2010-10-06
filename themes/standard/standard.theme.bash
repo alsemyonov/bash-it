@@ -1,1 +1,7 @@
-PROMPT='${debian_chroot:+($debian_chroot)}\[${bold_green}\]\u@\h\[${normal}\]:\[${bold_blue}\]\w\[${normal}\]\[${bold_red}\]$(parse_git_branch)\[${normal}\]\$ '
+PROMPT='${debian_chroot:+($debian_chroot)}\[${green}\]\u\[${normal}\]@\[${green}\]\h\[${normal}\]:\[${blue}\]\w\[${normal}\]\[${red}\]$(prompt_char)$(git_prompt_info)\[${normal}\]\$ '
+
+# git themeing
+GIT_THEME_PROMPT_DIRTY="×"
+GIT_THEME_PROMPT_CLEAN="✓"
+GIT_THEME_PROMPT_PREFIX=""
+GIT_THEME_PROMPT_SUFFIX=""
