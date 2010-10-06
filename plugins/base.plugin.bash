@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # Desktop Programs
-alias fireworks="open -a '/Applications/Adobe Fireworks CS3/Adobe Fireworks CS3.app'"
-alias photoshop="open -a '/Applications/Adobe Photoshop CS3/Adobe Photoshop.app'"
-alias preview="open -a '/Applications/Preview.app'"
-alias xcode="open -a '/Developer/Applications/Xcode.app'"
-alias filemerge="open -a '/Developer/Applications/Utilities/FileMerge.app'"
-alias safari="open -a safari"
-alias firefox="open -a firefox"
-alias dashcode="open -a dashcode"
+alias fireworks="open_app '/Applications/Adobe Fireworks CS3/Adobe Fireworks CS3.app'"
+alias photoshop="open_app '/Applications/Adobe Photoshop CS3/Adobe Photoshop.app'"
+alias preview="open_app '$PREVIEW'"
+alias xcode="open_app '/Developer/Applications/Xcode.app'"
+alias filemerge="open_app '/Developer/Applications/Utilities/FileMerge.app'"
+alias safari="open_app safari"
+alias firefox="open_app firefox"
+if [ -s /usr/bin/firefox ] ; then
+  unalias firefox
+fi
+alias dashcode="open_app dashcode"
