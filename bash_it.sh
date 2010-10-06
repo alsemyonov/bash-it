@@ -51,6 +51,10 @@ done
 
 export PS1=$PROMPT
 
+PREVIEW="less"
+[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
+[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
+
 #
 # Custom Help
 
