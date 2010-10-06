@@ -2,7 +2,7 @@
 # Initialize Bash It
 
 # Reload Library
-alias reload='source ~/.bash_profile'
+alias bash-it-reload='source ~/.bash_profile'
 
 # Load all files
 
