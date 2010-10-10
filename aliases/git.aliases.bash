@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Aliases
+alias ga='git add'
+alias gall='git add .'
 alias g='git'
+alias get='git'
 alias gst='git status'
 alias gs='git status'
 alias gl='git pull'
@@ -14,22 +17,20 @@ case $OSTYPE in
   darwin*)
     alias gd='git diff | mate'
     ;;
-  darwin*)
-    alias gd='git diff'
-    ;;
 esac
 alias gdv='git diff -w "$@" | vim -R -'
-
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gcount='git shortlog -sn'
 alias gcp='git cherry-pick'
+alias gco='git checkout'
+alias gexport='git archive --format zip --output'
 
 function git-help() {
   echo "Git Custom Aliases Usage"
-  echo 
+  echo
   echo "  g       = git"
   echo "  gst/gs  = git status"
   echo "  gl      = git pull"
@@ -43,5 +44,7 @@ function git-help() {
   echo "  gba     = git branch -a"
   echo "  gcount  = git shortlog -sn"
   echo "  gcp     = git cherry-pick"
+  echo "  gco     = git checkout"
+  echo "  gexport = git git archive --format zip --output"
   echo 
 }

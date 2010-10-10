@@ -1,14 +1,39 @@
 #!/bin/bash
 
-# Desktop Programs
-alias fireworks="open_app '/Applications/Adobe Fireworks CS3/Adobe Fireworks CS3.app'"
-alias photoshop="open_app '/Applications/Adobe Photoshop CS3/Adobe Photoshop.app'"
-alias preview="open_app '$PREVIEW'"
-alias xcode="open_app '/Developer/Applications/Xcode.app'"
-alias filemerge="open_app '/Developer/Applications/Utilities/FileMerge.app'"
-alias safari="open_app safari"
-alias firefox="open_app firefox"
-if [ -s /usr/bin/firefox ] ; then
-  unalias firefox
-fi
-alias dashcode="open_app dashcode"
+# For generic functions.
+
+function ips {
+  ifconfig | grep "inet " | awk '{ print $2 }'
+}
+
+function myip {
+  res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
+  echo "Your public IP is: ${bold_green} $res ${normal}"
+}
+
+
+# View man documentation in Preview
+pman () {
+   man -t "${1}" | open -f -a $PREVIEW
+}
+
+
+pcurl() {
+  curl "${1}" | open -f -a $PREVIEW
+}
+
+pri() {
+  ri -T "${1}" | open -f -a $PREVIEW
+}
+
+
+# disk usage per directory
+usage ()
+{
+  if [ $1 ]
+  then
+    du -hd $1
+  else
+    du -hd 1
+  fi
+}
