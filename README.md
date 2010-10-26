@@ -1,39 +1,35 @@
 # Bash it
 
-'Bash it' is a mash up of my own bash commands and scripts, other bash stuff I have found and a shameless ripoff of oh-my-zsh. :) 
+'Bash it' is a mash up of my own bash commands and scripts, other bash stuff I have found and a shameless ripoff of oh-my-zsh. :)
 
 Includes some autocompletion tools, theming support, aliases, custom functions, a few stolen pieces from Steve Losh, and more.
 
 ## Install
 
-Check a clone of this repo. You can view what a sample ~/.bash\_profile looks like in template/bash\_profile.template.bash. If you wanted to use that template, make sure to make a backup of your current ~/.bash\_profile file.
+Check a clone of this repo. You can view what a sample `~/.bash_profile` looks like in `template/bash_profile.template.bash`. If you wanted to use that template, make sure to make a backup of your current `~/.bash_profile` file.
 
-<pre><code>
-git clone http://github.com/revans/bash-it.git bash_it
+	git clone http://github.com/revans/bash-it.git bash_it
 
-cp ~/.bash_profile ~/.bash_profile_original
-cp <path/to/cloned/repo>/template/bash_profile.template.bash ~/.bash_profile
+	cp ~/.bash_profile ~/.bash_profile_original
+	cp <path/to/cloned/repo>/template/bash_profile.template.bash ~/.bash_profile
 
-</code></pre>
 
 ## Help Screens
 
-<pre><code>
-bash-it (will show all the help commands)
-aliases-help
-rails-help
-git-help
-</code></pre>
+	bash-it (will show all the help commands)
+	aliases-help
+	rails-help
+	git-help
 
 ## Your Custom scripts, aliases, and functions
 
 For custom scripts, and aliases, you can create the following files and they will be ignored by the git repo:
 
-* aliases/custom.aliases.bash
-* lib/custom.bash
-* plugins/custom.plugins.bash
+* `aliases/custom.aliases.bash`
+* `lib/custom.bash`
+* `plugins/custom.plugins.bash`
 
-and anything in the custom directory will be ignored with the exception of custom/example.bash. 
+and anything in the custom directory will be ignored with the exception of `custom/example.bash`.
 
 ## Themes
 
@@ -50,7 +46,17 @@ So, if you have contributions to bash-it, please send me a pull request and I'll
 
 If you are submitting a pull request, please add your name to the list.
 
-* Robert Evans
-* David Bradford
-* Rich Manalang
-* Piotr Usewicz
+* [Robert Evans][revans]
+* [David Bradford][zerobearing2]
+* [Rich Manalang][manalang]
+* [Piotr Usewicz][pusewicz]
+* [Simon H. Eskildsen][sirupsen]
+* [Mark Szymanski][mrman208]
+
+[revans]: http://github.com/revans
+[zerobearing2]: http://github.com/zerobearing2
+[manalang]: http://github.com/manalang
+[pusewicz]: http://github.com/pusewicz
+[sirupsen]: http://github.com/sirupsen
+[mrman208]: http://github.com/mrman208
+

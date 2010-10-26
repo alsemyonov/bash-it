@@ -28,7 +28,7 @@ case $OSTYPE in
     }
 esac
 
-# Load all files
+# Load the framework
 
 # Themes
 THEMES="${BASH}/themes/*.bash"
