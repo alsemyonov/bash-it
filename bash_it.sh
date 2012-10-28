@@ -1,99 +1,77 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Initialize Bash It
 
 # Reload Library
-alias bash-it-reload='source ~/.bash_profile'
+alias reload='source ~/.bash_profile'
 
-PREVIEW="less"
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
+# Only set $BASH_IT if it's not already set
+if [ -z "$BASH_IT" ];
+then
+    # Setting $BASH to maintain backwards compatibility
+    # TODO: warn users that they should upgrade their .bash_profile
+    export BASH_IT=$BASH
+    export BASH=`bash -c 'echo $BASH'`
+fi
 
-case $OSTYPE in
-  linux*)
-    open_app ()
-    {
-      nohup $1 >/dev/null 2>/dev/null &
-    }
-    ;;
-  darwin*)
-    open_app ()
-    {
-      open -a $1
-    }
-    ;;
-  *)
-    open_app ()
-    {
-      $1
-    }
-esac
+# For backwards compatibility, look in old BASH_THEME location
+if [ -z "$BASH_IT_THEME" ];
+then
+    # TODO: warn users that they should upgrade their .bash_profile
+    export BASH_IT_THEME="$BASH_THEME";
+    unset $BASH_THEME;
+fi
 
-# Load all files
+# Load composure first, so we support function metadata
+source "${BASH_IT}/lib/composure.sh"
 
-# Themes
-THEMES="${BASH}/themes/*.bash"
-for config_file in $THEMES
-do
-  source $config_file
-done
+# support 'plumbing' metadata
+cite _about _param _example _group _author _version
 
-# Library
-LIB="${BASH}/lib/*.bash"
+# Load colors first so they can be use in base theme
+source "${BASH_IT}/themes/colors.theme.bash"
+source "${BASH_IT}/themes/base.theme.bash"
+
+# library
+LIB="${BASH_IT}/lib/*.bash"
 for config_file in $LIB
 do
   source $config_file
 done
 
-# Tab Completion
-COMPLETION="${BASH}/completion/*.bash"
-for config_file in $COMPLETION
+# Load enabled aliases, completion, plugins
+for file_type in "aliases" "completion" "plugins"
 do
-  source $config_file
+  _load_bash_it_files $file_type
 done
 
-# Plugins
-PLUGINS="${BASH}/plugins/*.bash"
-for config_file in $PLUGINS
-do
-  source $config_file
-done
-
-# Aliases
-FUNCTIONS="${BASH}/aliases/*.bash"
-for config_file in $FUNCTIONS
-do
-  source $config_file
-done
+# Load any custom aliases that the user has added
+if [ -e "${BASH_IT}/aliases/custom.aliases.bash" ]
+then
+  source "${BASH_IT}/aliases/custom.aliases.bash"
+fi
 
 # Custom
-CUSTOM="${BASH}/custom/*.bash"
+CUSTOM="${BASH_IT}/custom/*.bash"
 for config_file in $CUSTOM
 do
-  source $config_file
+  if [ -e "${config_file}" ]; then
+    source $config_file
+  fi
 done
 
-
 unset config_file
-export PS1=$PROMPT
-
+if [[ $PROMPT ]]; then
+    export PS1=$PROMPT
+fi
 
 # Adding Support for other OSes
 PREVIEW="less"
 [ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
 [ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
 
+# Load all the Jekyll stuff
 
-#
-# Custom Help
-
-function bash-it() {
-  echo "Welcome to Bash It!"
-  echo
-  echo "Here is a list of commands you can use to get help screens for specific pieces of Bash it:"
-  echo
-  echo "  rails-help                  This will list out all the aliases you can use with rails."
-  echo "  git-help                    This will list out all the aliases you can use with git."
-  echo "  aliases-help                Generic list of aliases."
-  
-  echo
-}
+if [ -e $HOME/.jekyllconfig ]
+then
+  . $HOME/.jekyllconfig
+fi
