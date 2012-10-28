@@ -2,31 +2,7 @@
 # Initialize Bash It
 
 # Reload Library
-alias bash-it-reload='source ~/.bash_profile'
-
-PREVIEW="less"
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
-
-case $OSTYPE in
-  linux*)
-    open_app ()
-    {
-      nohup $1 >/dev/null 2>/dev/null &
-    }
-    ;;
-  darwin*)
-    open_app ()
-    {
-      open -a $1
-    }
-    ;;
-  *)
-    open_app ()
-    {
-      $1
-    }
-esac
+alias reload='source ~/.bash_profile'
 
 # Only set $BASH_IT if it's not already set
 if [ -z "$BASH_IT" ];
@@ -47,6 +23,9 @@ fi
 
 # Load composure first, so we support function metadata
 source "${BASH_IT}/lib/composure.sh"
+
+# support 'plumbing' metadata
+cite _about _param _example _group _author _version
 
 # Load colors first so they can be use in base theme
 source "${BASH_IT}/themes/colors.theme.bash"
@@ -96,21 +75,3 @@ if [ -e $HOME/.jekyllconfig ]
 then
   . $HOME/.jekyllconfig
 fi
-
-
-#
-# Custom Help
-
-function bash-it() {
-  echo "Welcome to Bash It!"
-  echo
-  echo "Here is a list of commands you can use to get help screens for specific pieces of Bash it:"
-  echo
-  echo "  rails-help                  This will list out all the aliases you can use with rails."
-  echo "  git-help                    This will list out all the aliases you can use with git."
-  echo "  todo-help                   This will list out all the aliases you can use with todo.txt-cli"
-  echo "  brew-help                   This will list out all the aliases you can use with Homebrew"
-  echo "  aliases-help                Generic list of aliases."
-  echo "  plugins-help                This will list out all the plugins and functions you can use with bash-it"
-  echo
-}
