@@ -1,24 +1,21 @@
-# scm themeing
+#!/usr/bin/env bash
+
 SCM_THEME_PROMPT_DIRTY="×"
 SCM_THEME_PROMPT_CLEAN="✓"
 SCM_THEME_PROMPT_PREFIX=""
 SCM_THEME_PROMPT_SUFFIX=""
 
-# TODO: need a check for OS before adding this to the prompt
-# ${debian_chroot:+($debian_chroot)}
-
-#added TITLEBAR for updating the tab and window titles with the pwd
 case $TERM in
-	xterm*)
-	TITLEBAR='\[\033]0;\w\007\]'
-	;;
-	*)
-	TITLEBAR=""
-	;;
+  xterm*)
+  TITLEBAR="\[\033]0;\w\007\]"
+  ;;
+  *)
+  TITLEBAR=""
+  ;;
 esac
 
-function prompt_command() {
-    PROMPT='${green}\u${normal}@${green}\h${normal}:${blue}\w${normal}${red}$(prompt_char)$(git_prompt_info)${normal}\$ '
+prompt() {
+    PS1="${green}\u${reset_color}@${green}\h ${blue}\w${cyan}$(ruby_version_prompt) ${red}$(scm_char)$(scm_prompt_info)${reset_color} \$ "
 }
 
-PROMPT_COMMAND=prompt_command;
+PROMPT_COMMAND=prompt
